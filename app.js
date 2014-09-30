@@ -1,26 +1,20 @@
 var express     = require('express');
 var app         = express();
 var bodyParser  = require('body-parser');
-var tweets      = [];
+var tweets      = ["hello", "yep"];
 var morgan      = require('morgan');
-var ejs         = require('ejs');
+var hogan       = require('ejs');
+var jsonParser  = bodyParser.json();
+var urlParser   = bodyParser.urlencoded({ extended: false });
+
+app.enable('view cache');
+app.use(morgan('combined'));
 
 app.set('views', 'views');
 app.set('view engine', 'ejs');
 
-app.use(morgan('combined'));
-
-var jsonParser = bodyParser.json();
-var urlParser = bodyParser.urlencoded({ extended: false });
-
 app.get('/', function (req, res) {
-  res.render('index.ejs', {
-    locals: {
-    	'title': title,
-    	'header': header,
-    	'tweets': tweets,
-    	stylesheets: ['/public/style.css']
-    }
+  res.render( 'index.ejs', {"tweets": tweets} )
 });
 
 app.post('/send', urlParser, function (req, res) {

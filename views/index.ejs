@@ -1,5 +1,14 @@
-<h1>Welcome to Twitter-Clone</h1>
-
-<h3>Your name is <%= name %> </h3>
-
-<p>log in</p>
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Twitter-Clone</title>
+	</head>
+	<body>
+		<form action="/send" method="POST">
+	    <input type="text" length="140" name="tweet">
+	    <input type="submit" value="Tweet">
+	  </form>
+		<% include partials/tweet %>
+	</body> 
+</html>
