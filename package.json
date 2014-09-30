@@ -13,6 +13,7 @@
     "hjs": "0.0.6",
     "hogan-express": "^0.5.2",
     "mocha": "",
+    "chai": "",
     "morgan": "^1.3.2",
     "nodemon": ""
   }

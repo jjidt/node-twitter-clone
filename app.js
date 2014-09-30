@@ -6,6 +6,7 @@ var morgan      = require('morgan');
 var hogan       = require('ejs');
 var jsonParser  = bodyParser.json();
 var urlParser   = bodyParser.urlencoded({ extended: false });
+var headerType  = require('./header-type.js')
 
 app.enable('view cache');
 app.use(morgan('combined'));
@@ -18,12 +19,17 @@ app.get('/', function (req, res) {
 });
 
 app.post('/send', urlParser, function (req, res) {
-	console.log(req.body);
 	if (req.body && req.body.tweet) {
 		tweets.push(req.body.tweet);
-    res.send({"status": "ok", "message": "tweet received"})
+		if (headerType(req.headers.access) === "html") {
+			res.redirect('/');
+		} else if (headerType(req.headers.access) === "json") {
+      res.send({"status": "ok", "message": "Tweet received"});
+		} else {
+			res.send({"status": "nok", "message": "header assign type not recognized"});
+		}
 	} else {
-    res.send({"status": "nok", "message": "no tweet received"})
+    res.send({"status": "nok", "message": "no tweet received"});
 	}
 });
 

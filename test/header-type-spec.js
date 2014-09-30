@@ -1,5 +1,5 @@
 var assert     = require('assert');
-var mocha      = require('mocha');
+var mocha    = require('mocha');
 var headerType = require('../header-type.js');
 
 describe('headerType', function(){
