@@ -22,7 +22,7 @@ app.post('/send', urlParser, function (req, res) {
 	if (req.body && req.body.tweet) {
 		tweets.push(req.body.tweet);
 		if (headerType(req.headers.access) === "html") {
-			res.redirect('/');
+			res.redirect('/', 302);
 		} else if (headerType(req.headers.access) === "json") {
       res.send({"status": "ok", "message": "Tweet received"});
 		} else {

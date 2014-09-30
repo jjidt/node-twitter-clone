@@ -1,11 +1,13 @@
 var headerType = function(header){
-	var splitHeader = header.split(",");
-	if (splitHeader.indexOf('text/html') !== -1) {
-		return "html";
-	} else if(splitHeader.indexOf('application/json') !== -1) {
-		return "json";
-	} else {
-		return null
+	if(header){
+		var splitHeader = header.split(",");
+		if (splitHeader.indexOf('text/html') !== -1) {
+			return "html";
+		} else if(splitHeader.indexOf('application/json') !== -1) {
+			return "json";
+		} else {
+			return null
+		}
 	}
 };
 
